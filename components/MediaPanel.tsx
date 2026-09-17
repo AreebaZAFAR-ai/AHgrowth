@@ -21,12 +21,10 @@ export default function MediaPanel({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasError, setHasError] = useState(false);
 
-  // Reset error state when the media source changes
   useEffect(() => {
     setHasError(false);
   }, [src]);
 
-  // Automatically play/pause video depending on viewport visibility
   useEffect(() => {
     if (type !== "video" || !src || hasError || !videoRef.current) {
       return;
@@ -37,9 +35,7 @@ export default function MediaPanel({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Autoplay may be blocked by browser settings
-          });
+          video.play().catch(() => {});
         } else {
           video.pause();
         }
@@ -64,38 +60,19 @@ export default function MediaPanel({
       className={`
         group
         relative
-        h-[280px]
+        h-full
         w-full
         overflow-hidden
-        rounded-[2rem]
-        border
-        border-white/10
-        bg-white/[0.02]
-        shadow-2xl
-        transition-all
-        duration-700
-        hover:border-white/20
-        hover:shadow-black/40
-        sm:h-[310px]
-        md:h-[380px]
-        lg:h-[460px]
-        xl:h-[500px]
+        rounded-[18px]
+        bg-black
         ${className}
       `}
     >
+      {/* MEDIA */}
       {!showPlaceholder ? (
         type === "video" ? (
           <video
             ref={videoRef}
-            className="
-              h-full
-              w-full
-              object-cover
-              transition-transform
-              duration-1000
-              ease-out
-              group-hover:scale-105
-            "
             src={src}
             muted
             loop
@@ -104,6 +81,19 @@ export default function MediaPanel({
             preload="metadata"
             aria-label={alt}
             onError={() => setHasError(true)}
+            className="
+              absolute
+              inset-0
+              block
+              h-full
+              w-full
+              object-cover
+              object-center
+              transition-transform
+              duration-1000
+              ease-out
+              group-hover:scale-[1.04]
+            "
           />
         ) : (
           <Image
@@ -117,11 +107,17 @@ export default function MediaPanel({
               100vw
             "
             className="
+              absolute
+              inset-0
+              block
+              h-full
+              w-full
               object-cover
+              object-center
               transition-transform
               duration-1000
               ease-out
-              group-hover:scale-105
+              group-hover:scale-[1.04]
             "
             onError={() => setHasError(true)}
           />
@@ -129,16 +125,14 @@ export default function MediaPanel({
       ) : (
         <div
           className={`
+            absolute
+            inset-0
             flex
             h-full
             w-full
             items-center
             justify-center
             bg-gradient-to-br
-            transition-transform
-            duration-1000
-            ease-out
-            group-hover:scale-105
             ${gradient}
           `}
         >
@@ -146,9 +140,10 @@ export default function MediaPanel({
             className="
               font-body
               text-xs
+              font-medium
               uppercase
-              tracking-[0.35em]
-              text-text-primary/40
+              tracking-[0.25em]
+              text-black/30
             "
           >
             {type === "video" ? "Video" : "Image"}
@@ -156,33 +151,54 @@ export default function MediaPanel({
         </div>
       )}
 
-      {/* Subtle dark overlay for premium glass effect */}
+      {/* PREMIUM OVERLAY */}
       <div
+        aria-hidden
         className="
           pointer-events-none
           absolute
           inset-0
-          bg-gradient-to-t
-          from-black/20
+          bg-gradient-to-tr
+          from-black/10
           via-transparent
-          to-white/[0.03]
+          to-white/10
           opacity-0
           transition-opacity
-          duration-700
+          duration-500
           group-hover:opacity-100
         "
       />
 
-      {/* Soft border highlight */}
+      {/* BOTTOM SHADOW */}
       <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          bottom-0
+          h-1/3
+          bg-gradient-to-t
+          from-black/15
+          to-transparent
+          opacity-0
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+
+      {/* EDGE */}
+      <div
+        aria-hidden
         className="
           pointer-events-none
           absolute
           inset-0
-          rounded-[2rem]
+          rounded-[inherit]
           ring-1
           ring-inset
-          ring-white/[0.05]
+          ring-black/[0.06]
         "
       />
     </div>

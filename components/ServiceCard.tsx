@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type ServiceCardProps = {
   number: string;
@@ -20,7 +21,25 @@ export default function ServiceCard({
   accent,
 }: ServiceCardProps) {
   return (
-    <div
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 50,
+        scale: 0.96,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
+      transition={{
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="
         group relative flex min-h-[160px] flex-col overflow-hidden
         rounded-2xl border border-white/10
@@ -37,12 +56,23 @@ export default function ServiceCard({
       {/* subtle top hairline */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100"
+        className="
+          pointer-events-none absolute inset-x-0 top-0 h-px
+          bg-gradient-to-r from-transparent via-white/25 to-transparent
+          opacity-70 transition-opacity duration-500
+          group-hover:opacity-100
+        "
       />
 
       <div className="relative flex items-center gap-3">
-        <span aria-hidden className="h-1 w-1 rounded-full bg-white/40" />
-        <span className="font-heading text-sm text-white/50">{number}</span>
+        <span
+          aria-hidden
+          className="h-1 w-1 rounded-full bg-white/40"
+        />
+
+        <span className="font-heading text-sm text-white/50">
+          {number}
+        </span>
 
         {accent && (
           <span className="rounded-full border border-white/20 px-3 py-1 font-body text-[0.65rem] uppercase tracking-widest text-white/70">
@@ -61,17 +91,25 @@ export default function ServiceCard({
 
       <Link
         href={href}
-        className="relative mt-auto inline-flex w-fit items-center gap-2 pt-4 font-body text-sm text-text-primary transition-colors duration-500 group-hover:text-white"
+        className="
+          relative mt-auto inline-flex w-fit items-center gap-2 pt-4
+          font-body text-sm text-text-primary
+          transition-colors duration-500
+          group-hover:text-white
+        "
       >
         {detail}
 
         <span
           aria-hidden
-          className="transition-transform duration-500 group-hover:translate-x-1.5"
+          className="
+            transition-transform duration-500
+            group-hover:translate-x-1.5
+          "
         >
           →
         </span>
       </Link>
-    </div>
+    </motion.div>
   );
 }

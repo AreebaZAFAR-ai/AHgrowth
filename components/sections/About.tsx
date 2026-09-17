@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from "react";
@@ -57,7 +58,6 @@ export default function About() {
           "-=0.7"
         );
 
-      // Floating 3D orb
       gsap.to(orbRef.current, {
         y: -25,
         x: 12,
@@ -68,7 +68,6 @@ export default function About() {
         yoyo: true,
       });
 
-      // Rotating ring
       gsap.to(ringRef.current, {
         rotate: 360,
         duration: 18,
@@ -76,7 +75,6 @@ export default function About() {
         repeat: -1,
       });
 
-      // Subtle 3D movement
       gsap.to(artRef.current, {
         rotateY: 8,
         rotateX: -5,
@@ -95,17 +93,61 @@ export default function About() {
       className="
         relative
         overflow-hidden
-        bg-[rgb(190,255,252)]
         px-5
-        py-24
+        pt-16
+        pb-20
         sm:px-8
-        sm:py-28
-        lg:px-10
-        lg:py-36
-        xl:px-12
+        sm:pt-20
+        sm:pb-24
+        lg:px-12
+        lg:pt-24
+        lg:pb-32
+        xl:px-16
       "
     >
-      {/* Background decorative shapes */}
+      {/* ================= BACKGROUND VIDEO ================= */}
+      <video
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+        "
+        src="/assets/contact_bg.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      />
+
+      {/* ================= VIDEO OVERLAY ================= */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-white/75
+        "
+      />
+
+      {/* ================= EXTRA SOFT OVERLAY ================= */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-gradient-to-b
+          from-white/60
+          via-white/30
+          to-white/70
+        "
+      />
+
+      {/* ================= BACKGROUND DECORATIVE SHAPES ================= */}
       <div
         className="
           pointer-events-none
@@ -134,114 +176,107 @@ export default function About() {
         "
       />
 
-      <div className="relative mx-auto max-w-[1500px]">
+      {/* ================= CONTENT ================= */}
+      <div className="relative z-10 mx-auto max-w-[1500px]">
+        {/* ================= ABOUT LABEL ================= */}
+        <span
+          ref={labelRef}
+          className="
+            mb-10
+            block
+            text-center
+            font-heading
+            text-[28px]
+            font-semibold
+            leading-none
+            tracking-[-0.02em]
+            text-black
+            sm:mb-14
+            sm:text-[40px]
+            lg:mb-16
+            lg:text-[48px]
+          "
+        >
+          About Us
+        </span>
+
         <div
           className="
             grid
             items-center
-            gap-20
+            gap-16
             lg:grid-cols-[1.15fr_0.85fr]
             lg:gap-12
             xl:gap-24
           "
         >
-          {/* TEXT */}
+          {/* ================= TEXT ================= */}
           <div>
-            <span
-              ref={labelRef}
-              className="
-                block
-                font-heading
-                text-sm
-                font-semibold
-                uppercase
-                tracking-[0.35em]
-                text-black
-              "
-            >
-              About
-            </span>
-
             <h2
               ref={headlineRef}
               className="
-                mt-6
                 max-w-4xl
-                font-['Space_Grotesk']
-                text-5xl
-                font-bold
-                leading-[0.95]
-                tracking-[-0.04em]
+                font-heading
+                text-[32px]
+                font-semibold
+                leading-[1.05]
+                tracking-[-0.03em]
                 text-black
-                sm:text-6xl
-                md:text-7xl
-                lg:text-[4.6rem]
-                xl:text-[5.5rem]
+                sm:text-[42px]
+                md:text-[50px]
+                lg:text-[44px]
+                xl:text-[52px]
               "
             >
-              AH Growth builds the growth systems ambitious
-              brands run on.
+              We build digital
+              <br />
+              systems that help
+              <br />
+              businesses grow.
             </h2>
 
             <p
               ref={descriptionRef}
               className="
-                mt-10
-                max-w-xl
-                font-heading
-                text-lg
-                font-medium
-                leading-relaxed
+                mt-6
+                max-w-2xl
+                font-body
+                text-[16px]
+                font-normal
+                leading-[1.65]
                 text-black/70
-                sm:text-xl
-                md:text-2xl
+                sm:mt-8
+                sm:text-[18px]
+                md:text-[19px]
               "
             >
-              A performance-first digital agency — SEO, paid
-              media, content, and AI search optimization
-              engineered together, not run as separate
-              channels. The result is visibility that turns
-              into revenue, not vanity metrics.
+              AH Growth is a software house and digital growth partner helping
+              businesses build, launch, and scale their digital presence. We
+              combine software development, design, marketing, SEO, automation,
+              and AI to create practical solutions that deliver measurable
+              business results.
             </p>
-
-            {/* Small detail */}
-            <div className="mt-12 flex items-center gap-4">
-              <div className="h-px w-16 bg-black/40" />
-
-              <span
-                className="
-                  font-heading
-                  text-sm
-                  font-semibold
-                  uppercase
-                  tracking-[0.25em]
-                  text-black/50
-                "
-              >
-                Built for growth
-              </span>
-            </div>
           </div>
 
-          {/* 3D ABSTRACT ART */}
-          <div className="flex min-h-[420px] items-center justify-center lg:min-h-[520px]">
+          {/* ================= 3D ABSTRACT ART ================= */}
+          <div className="flex min-h-[380px] items-center justify-center lg:min-h-[480px]">
             <div
               ref={artRef}
               className="
                 relative
-                h-[320px]
-                w-[320px]
-                sm:h-[400px]
-                sm:w-[400px]
-                lg:h-[460px]
-                lg:w-[460px]
+                h-[300px]
+                w-[300px]
+                sm:h-[380px]
+                sm:w-[380px]
+                lg:h-[440px]
+                lg:w-[440px]
               "
               style={{
                 perspective: "1000px",
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Outer ring */}
+              {/* ================= OUTER RING ================= */}
               <div
                 ref={ringRef}
                 className="
@@ -282,7 +317,7 @@ export default function About() {
                 />
               </div>
 
-              {/* Second ring */}
+              {/* ================= SECOND RING ================= */}
               <div
                 className="
                   absolute
@@ -294,7 +329,7 @@ export default function About() {
                 "
               />
 
-              {/* Main 3D orb */}
+              {/* ================= MAIN 3D ORB ================= */}
               <div
                 ref={orbRef}
                 className="
@@ -315,7 +350,7 @@ export default function About() {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Orb highlight */}
+                {/* Pink highlight */}
                 <div
                   className="
                     absolute
@@ -324,12 +359,12 @@ export default function About() {
                     h-[22%]
                     w-[22%]
                     rounded-full
-                    bg-white/80
+                    bg-[rgb(235,190,190)]
                     blur-md
                   "
                 />
 
-                {/* Orb shadow */}
+                {/* Dark highlight */}
                 <div
                   className="
                     absolute
@@ -344,7 +379,7 @@ export default function About() {
                 />
               </div>
 
-              {/* Floating small sphere */}
+              {/* ================= FLOATING SMALL SPHERE ================= */}
               <div
                 className="
                   absolute
@@ -363,7 +398,7 @@ export default function About() {
                 }}
               />
 
-              {/* Floating small sphere */}
+              {/* ================= FLOATING SMALL SPHERE ================= */}
               <div
                 className="
                   absolute
@@ -378,7 +413,7 @@ export default function About() {
                 "
               />
 
-              {/* Orbit line */}
+              {/* ================= ORBIT LINE ================= */}
               <div
                 className="
                   absolute
@@ -398,7 +433,7 @@ export default function About() {
                 }}
               />
 
-              {/* Glow */}
+              {/* ================= GLOW ================= */}
               <div
                 className="
                   absolute
@@ -410,7 +445,7 @@ export default function About() {
                   -translate-x-1/2
                   -translate-y-1/2
                   rounded-full
-                  bg-white/30
+                  bg-black/5
                   blur-3xl
                 "
               />

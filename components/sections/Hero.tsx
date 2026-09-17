@@ -82,7 +82,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           preload="auto"
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/assets/hero.mp4" type="video/mp4" />
+          <source src="/assets/innovation.mp4" type="video/mp4" />
         </video>
 
         {/* Dark cinematic overlay */}

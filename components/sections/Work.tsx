@@ -1,7 +1,7 @@
+
 "use client";
 
-import { useRef } from "react";
-import Link from "next/link";
+import { useRef, useState } from "react";
 import WorkProjectCard from "@/components/WorkProjectCard";
 import { gsap, useGSAP } from "@/lib/gsap";
 
@@ -11,170 +11,397 @@ type Project = {
   category: string;
   year: string;
   description: string;
-  href: string;
-  mediaType: "video" | "image";
-  mediaSrc?: string;
+  liveUrl: string;
+  mediaSrc: string;
   mediaAlt: string;
   gradient: string;
+  accentColor: string;
+  stat: {
+    value: string;
+    label: string;
+  };
 };
 
-// Real client engagements from the AH Growth brief — same companies referenced
-// in the Testimonials section, so Work and Testimonials stay consistent.
 const PROJECTS: Project[] = [
   {
     number: "01",
-    title: "Vantra SaaS",
-    category: "AI Search Optimization",
+    title: "FitLat",
+    category: "Fitness & Web Experience",
     year: "2025",
     description:
-      "Restructured Vantra's content and entity graph so answer engines cite them first — now the top-ranked source in ChatGPT and Perplexity for their category.",
-    href: "/work",
-    mediaType: "video",
-    mediaSrc: "/assets/AIsearch.mp4",
-    mediaAlt: "Vantra SaaS AI search optimization case study",
-    gradient: "from-accent-violet/30 via-accent-lime/10 to-background",
+      "A premium fitness platform built around coaching, performance, and community, combining immersive storytelling with conversion-focused membership experiences.",
+    liveUrl: "https://fitlat.vercel.app/",
+    mediaSrc: "/assets/fitlat.jpg",
+    mediaAlt: "FitLat fitness and strength conditioning website",
+    gradient:
+      "from-accent-violet/30 via-accent-lime/10 to-background",
+    accentColor: "#452E5A",
+    stat: {
+      value: "200+",
+      label: "Client transformations coached",
+    },
   },
+
   {
     number: "02",
-    title: "Northpeak Realty",
-    category: "Performance Marketing",
-    year: "2024",
+    title: "Modisch",
+    category: "Architecture & Digital Experience",
+    year: "2026",
     description:
-      "Rebuilt the Meta media engine around payback period, not vanity CTR — landing a 4.8x return on ad spend.",
-    href: "/work",
-    mediaType: "image",
-    mediaSrc: "/assets/marketing.png",
-    mediaAlt: "Northpeak Realty performance marketing case study",
-    gradient: "from-accent-violet/25 via-background to-background",
+      "An immersive architecture platform combining editorial storytelling, project visualization, and structured portfolio exploration to present 47 projects across 29 practice areas and 4 sectors.",
+    liveUrl: "https://modisch-orcin.vercel.app/",
+    mediaSrc: "/assets/modish.jpg",
+    mediaAlt: "Modisch architecture and design website",
+    gradient:
+      "from-accent-violet/25 via-background to-background",
+    accentColor: "#e1e2bb",
+    stat: {
+      value: "47",
+      label: "Published Projects",
+    },
   },
+
   {
     number: "03",
-    title: "Lumen Skincare",
-    category: "SEO & Organic Growth",
+    title: "SolarLink",
+    category: "Solar Energy & Web",
     year: "2025",
     description:
-      "Fixed the technical foundation and content architecture behind Lumen's organic channel — 312% traffic growth in six months.",
-    href: "/work",
-    mediaType: "video",
-    mediaSrc: "/assets/seo.mp4",
-    mediaAlt: "Lumen Skincare SEO growth case study",
-    gradient: "from-accent-lime/25 via-background to-background",
+      "A conversion-focused solar platform combining premium design, interactive savings tools, real installation data, and clear energy solutions to turn complex solar decisions into confident customer actions.",
+    liveUrl: "https://solarlink.com.pk/",
+    mediaSrc: "/assets/soloar6.png",
+    mediaAlt: "SolarLink solar energy website",
+    gradient:
+      "from-accent-lime/25 via-background to-background",
+    accentColor: "#17433F",
+    stat: {
+      value: "70-100%",
+      label: "Estimated Bill Savings",
+    },
   },
+
   {
     number: "04",
-    title: "Forge Fitness Studios",
-    category: "Local SEO & Web",
-    year: "2024",
+    title: "Cake Spot",
+    category: "E-commerce & Web Experience",
+    year: "2026",
     description:
-      "Sharpened local search presence and rebuilt the booking funnel — local leads up 260%, calendar now the bottleneck.",
-    href: "/work",
-    mediaType: "video",
-    mediaSrc: "/assets/website.mp4",
-    mediaAlt: "Forge Fitness Studios local growth case study",
-    gradient: "from-accent-violet/20 via-background to-background",
+      "A conversion-focused cake e-commerce experience built around custom ordering, occasion-based discovery, bestseller merchandising, and seamless delivery options across Lahore.",
+    liveUrl: "https://cakespot-redesign.vercel.app/",
+    mediaSrc: "/assets/cake1.png",
+    mediaAlt: "Cake Spot cake e-commerce website",
+    gradient:
+      "from-accent-violet/20 via-background to-background",
+    accentColor: "#F29191",
+    stat: {
+      value: "6",
+      label: "Celebration Categories",
+    },
   },
 ];
 
+const DEFAULT_BG = "#f4f1e8";
+
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subheadingRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+
+  const [activeColor, setActiveColor] =
+    useState<string>(DEFAULT_BG);
 
   useGSAP(
     () => {
-      gsap.from(headerRef.current, {
-        autoAlpha: 0,
-        y: 40,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-          once: true,
-        },
-      });
+      /* ================= HEADER ENTRANCE ================= */
+
+      if (headingRef.current && subheadingRef.current) {
+        gsap.set(headingRef.current, {
+          opacity: 0,
+          y: 45,
+          scale: 0.94,
+          filter: "blur(10px)",
+        });
+
+        gsap.set(subheadingRef.current, {
+          opacity: 0,
+          y: 25,
+          filter: "blur(7px)",
+        });
+
+        const headingTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 88%",
+            once: true,
+          },
+        });
+
+        headingTl
+          .to(headingRef.current, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            ease: "expo.out",
+          })
+          .to(
+            subheadingRef.current,
+            {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 0.8,
+              ease: "power4.out",
+            },
+            "-=0.55"
+          );
+      }
+
+      /* ================= PROJECT GRID ENTRANCE ================= */
 
       if (gridRef.current) {
-        gsap.from(gridRef.current.children, {
-          autoAlpha: 0,
+        gsap.set(gridRef.current.children, {
+          opacity: 0,
           y: 48,
+          scale: 0.97,
+          filter: "blur(6px)",
+        });
+
+        gsap.to(gridRef.current.children, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
           duration: 0.9,
-          ease: "power3.out",
+          ease: "power4.out",
           stagger: 0.15,
           scrollTrigger: {
             trigger: gridRef.current,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
           },
         });
       }
-
-      gsap.from(ctaRef.current, {
-        autoAlpha: 0,
-        y: 24,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ctaRef.current,
-          start: "top 92%",
-          once: true,
-        },
-      });
     },
-    { scope: sectionRef }
+    {
+      scope: sectionRef,
+    }
   );
 
   return (
     <section
+      id="work"
       ref={sectionRef}
-      className="relative overflow-hidden bg-black px-5 py-28 sm:px-8 sm:py-36 lg:px-10 xl:px-12"
+      className="
+        relative
+        scroll-mt-20
+        overflow-hidden
+        bg-black
+        px-8
+        py-4
+        sm:px-12
+        sm:py-5
+        md:px-20
+        md:py-7
+        lg:px-28
+        lg:py-9
+        xl:px-36
+        2xl:px-44
+      "
     >
-      <div className="relative mx-auto max-w-[1500px]">
-        {/* SECTION HEADER */}
+      {/* ================= OUTER AMBIENT GLOW ================= */}
+
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          left-0
+          top-1/4
+          h-[400px]
+          w-[200px]
+          rounded-full
+          bg-[#DFFF4F]/5
+          blur-[120px]
+        "
+      />
+
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          bottom-1/4
+          right-0
+          h-[400px]
+          w-[200px]
+          rounded-full
+          bg-[#D8D2FF]/5
+          blur-[120px]
+        "
+      />
+
+      {/* ================= INNER PANEL ================= */}
+
+      <div
+        style={{
+          backgroundColor: activeColor,
+        }}
+        className="
+          relative
+          overflow-hidden
+          rounded-[24px]
+          transition-colors
+          duration-700
+          ease-out
+          sm:rounded-[30px]
+          md:rounded-[34px]
+          lg:rounded-[40px]
+        "
+      >
+        {/* ================= INNER AMBIENT BACKGROUND ================= */}
+
         <div
-          ref={headerRef}
-          className="flex flex-col gap-8 border-b border-white/10 pb-12 sm:pb-14 md:flex-row md:items-end md:justify-between lg:pb-16"
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            -right-40
+            top-10
+            h-[320px]
+            w-[320px]
+            rounded-full
+            bg-[#DFFF4F]/8
+            blur-[110px]
+          "
+        />
+
+        <div
+          aria-hidden
+          className="
+            pointer-events-none
+            absolute
+            -left-40
+            bottom-10
+            h-[300px]
+            w-[300px]
+            rounded-full
+            bg-[#D8D2FF]/8
+            blur-[110px]
+          "
+        />
+
+        {/* ================= CONTENT ================= */}
+
+        <div
+          className="
+            relative
+            z-10
+            mx-auto
+            w-full
+            max-w-[1400px]
+            px-5
+            py-12
+            sm:px-8
+            sm:py-14
+            md:px-10
+            lg:px-12
+            lg:py-16
+            xl:px-16
+          "
         >
-          <div className="max-w-2xl">
-            <span className="font-body text-xs font-bold uppercase tracking-[0.35em] text-[rgb(255,249,166)]">
-              Selected Work
-            </span>
-            <h2 className="mt-5 font-heading text-4xl font-black leading-[0.95] tracking-[-0.04em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          {/* ================= HEADER ================= */}
+
+          <div
+            className="
+              mx-auto
+              flex
+              max-w-3xl
+              flex-col
+              items-center
+              text-center
+            "
+          >
+            <h3
+              ref={headingRef}
+              className="
+                font-heading
+                text-4xl
+                font-semibold
+                leading-none
+                tracking-[-0.05em]
+                text-black
+                sm:text-5xl
+                md:text-6xl
+                lg:text-7xl
+              "
+            >
+              Work
+            </h3>
+
+            <p
+              ref={subheadingRef}
+              className="
+                mt-3
+                max-w-xl
+                font-heading
+                text-lg
+                font-medium
+                leading-tight
+                tracking-[-0.025em]
+                text-black/50
+                sm:mt-4
+                sm:text-xl
+                md:text-2xl
+              "
+            >
               Work that moves brands.
-            </h2>
+            </p>
           </div>
 
-          <p className="max-w-sm font-body text-base leading-relaxed text-white/50 sm:text-lg md:pb-2">
-            Selected engagements where strategy, design, and AI-search craft
-            turned into revenue — not just better-looking metrics.
-          </p>
-        </div>
+          {/* ================= PROJECTS ================= */}
 
-        {/* CLEAN 2-COLUMN EDITORIAL GRID */}
-        <div
-          ref={gridRef}
-          className="mt-20 grid grid-cols-1 gap-x-10 gap-y-20 sm:mt-24 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-24 lg:gap-x-16 lg:gap-y-28"
-        >
-          {PROJECTS.map((project) => (
-            <WorkProjectCard key={project.number} {...project} />
-          ))}
-        </div>
-
-        {/* VIEW ALL WORK CTA */}
-        <div ref={ctaRef} className="mt-24 flex justify-center sm:mt-28 lg:mt-32">
-          <Link
-            href="/work"
-            className="group inline-flex items-center gap-3 rounded-full border border-white/15 px-7 py-3.5 font-body text-sm font-bold uppercase tracking-[0.15em] text-white transition-all duration-500 hover:border-[rgb(255,249,166)] hover:bg-[rgb(255,249,166)] hover:text-black sm:px-8 sm:py-4"
+          <div
+            ref={gridRef}
+            className="
+              mt-8
+              grid
+              grid-cols-1
+              gap-7
+              sm:mt-10
+              sm:grid-cols-2
+              sm:gap-9
+              md:gap-10
+              lg:mt-12
+              lg:gap-14
+              xl:gap-16
+            "
           >
-            View all work
-            <span
-              aria-hidden
-              className="transition-transform duration-500 group-hover:translate-x-1.5"
-            >
-              →
-            </span>
-          </Link>
+            {PROJECTS.map((project) => (
+              <WorkProjectCard
+                key={project.liveUrl}
+                number={project.number}
+                title={project.title}
+                category={project.category}
+                year={project.year}
+                description={project.description}
+                mediaSrc={project.mediaSrc}
+                mediaAlt={project.mediaAlt}
+                gradient={project.gradient}
+                stat={project.stat}
+                href={project.liveUrl}
+                external
+                onHoverStart={() =>
+                  setActiveColor(project.accentColor)
+                }
+                onHoverEnd={() =>
+                  setActiveColor(DEFAULT_BG)
+                }
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
