@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -49,51 +50,49 @@ export default function ServiceDetailPage({
 
   useGSAP(
     () => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
       const intro = gsap.timeline({
         defaults: {
-          ease: "power4.out",
+          ease: "power3.out",
         },
       });
 
       intro
         .from("[data-hero-label]", {
-          y: 25,
+          y: isMobile ? 15 : 25,
           opacity: 0,
-          filter: "blur(5px)",
-          duration: 0.7,
+          duration: isMobile ? 0.45 : 0.7,
         })
         .from(
           "[data-hero-title]",
           {
-            y: 45,
+            y: isMobile ? 25 : 45,
             opacity: 0,
-            scale: 0.96,
-            filter: "blur(8px)",
-            duration: 1,
-            ease: "expo.out",
+            scale: isMobile ? 0.985 : 0.96,
+            duration: isMobile ? 0.65 : 0.9,
+            ease: "power3.out",
           },
-          "-=0.4",
+          "-=0.2",
         )
         .from(
           "[data-hero-copy]",
           {
-            y: 25,
+            y: isMobile ? 15 : 25,
             opacity: 0,
-            filter: "blur(5px)",
-            duration: 0.8,
+            duration: isMobile ? 0.5 : 0.7,
           },
-          "-=0.55",
+          "-=0.3",
         )
         .from(
           "[data-hero-media]",
           {
-            scale: 0.94,
+            scale: isMobile ? 0.985 : 0.97,
             opacity: 0,
-            filter: "blur(6px)",
-            duration: 1.1,
-            ease: "expo.out",
+            duration: isMobile ? 0.6 : 0.8,
+            ease: "power3.out",
           },
-          "-=0.7",
+          "-=0.35",
         );
 
       gsap.utils
@@ -102,19 +101,17 @@ export default function ServiceDetailPage({
           gsap.fromTo(
             element,
             {
-              y: 35,
+              y: isMobile ? 20 : 30,
               opacity: 0,
-              filter: "blur(5px)",
             },
             {
               y: 0,
               opacity: 1,
-              filter: "blur(0px)",
-              duration: 0.8,
-              ease: "power4.out",
+              duration: isMobile ? 0.55 : 0.75,
+              ease: "power3.out",
               scrollTrigger: {
                 trigger: element,
-                start: "top 88%",
+                start: "top 90%",
                 once: true,
               },
             },
@@ -126,24 +123,42 @@ export default function ServiceDetailPage({
     },
   );
 
-  const renderMedia = (className: string) => {
+  const renderMedia = (
+    className: string,
+    options?: {
+      priority?: boolean;
+      secondary?: boolean;
+    },
+  ) => {
+    const priority = options?.priority ?? false;
+    const secondary = options?.secondary ?? false;
+
     if (service.mediaType === "video") {
       return (
         <video
           src={service.media}
-          autoPlay
+          autoPlay={!secondary}
           muted
           loop
           playsInline
+          preload={secondary ? "none" : "metadata"}
           className={className}
         />
       );
     }
 
     return (
-      <img
+      <Image
         src={service.media}
         alt={service.title}
+        fill
+        priority={priority}
+        loading={priority ? undefined : "lazy"}
+        sizes={
+          secondary
+            ? "(max-width: 768px) 100vw, 60vw"
+            : "(max-width: 768px) 100vw, 50vw"
+        }
         className={className}
       />
     );
@@ -389,6 +404,9 @@ export default function ServiceDetailPage({
                     ease-out
                     group-hover:scale-[1.045]
                   `,
+                  {
+                    priority: true,
+                  },
                 )}
 
                 {/* Soft image overlay */}
@@ -429,6 +447,7 @@ export default function ServiceDetailPage({
 
                 <div
                   className="
+                    pointer-events-none
                     absolute
                     bottom-4
                     left-4
@@ -709,10 +728,34 @@ export default function ServiceDetailPage({
                 "
               >
                 {renderMedia(
-                  "absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-1000 ease-out group-hover:scale-[1.04]",
+                  `
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                    opacity-90
+                    transition-transform
+                    duration-1000
+                    ease-out
+                    group-hover:scale-[1.04]
+                  `,
+                  {
+                    secondary: true,
+                  },
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-white/10" />
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-tr
+                    from-black/25
+                    via-transparent
+                    to-white/10
+                  "
+                />
               </div>
             </div>
           </section>
