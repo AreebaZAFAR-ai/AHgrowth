@@ -188,7 +188,7 @@ export default function Hero({ ready }: { ready: boolean }) {
         {/* IMAGE 1 */}
         <img
           ref={media1Ref}
-          src="/assets/webdev1.jpg"
+          src="/assets/webdev1.webp"
           alt="Web development"
           className="absolute inset-0 h-full w-full object-cover will-change-transform"
         />
@@ -196,7 +196,7 @@ export default function Hero({ ready }: { ready: boolean }) {
         {/* IMAGE 2 */}
         <img
           ref={media2Ref}
-          src="/assets/webdev2.png"
+          src="/assets/webdev2.webp"
           alt="Digital development"
           className="absolute inset-0 h-full w-full object-cover will-change-transform"
         />
@@ -204,7 +204,7 @@ export default function Hero({ ready }: { ready: boolean }) {
         {/* IMAGE 3 */}
         <img
           ref={media3Ref}
-          src="/assets/webdevep.jpg"
+          src="/assets/webdevep.webp"
           alt="Digital experience"
           className="absolute inset-0 h-full w-full object-cover will-change-transform"
         />

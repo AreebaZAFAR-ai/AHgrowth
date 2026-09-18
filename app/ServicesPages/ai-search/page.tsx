@@ -10,7 +10,7 @@ export default function AIAutomationPage() {
         highlight: "build systems that move your business forward.",
         description:
           "Turn repetitive business processes into intelligent, connected systems that move information faster, reduce manual work, and help your team focus on meaningful work.",
-        media: "/assets/aiautomation.jpg",
+        media: "/assets/aiautomation.webp",
         mediaType: "image",
 
         strategyTitle:

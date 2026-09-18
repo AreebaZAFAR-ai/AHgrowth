@@ -19,14 +19,12 @@ const companyLinks = [
   { name: "About Us", href: "/about" },
   { name: "Our Work", href: "/work" },
   { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" },
 ];
 
 const resources = [
   { name: "Our Process", href: "/process" },
   { name: "FAQs", href: "/#faq" },
   { name: "Case Studies", href: "/work" },
-  { name: "Get Started", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -39,8 +37,6 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#0a0a07] px-5 pb-5 pt-10 text-white sm:px-6 md:px-10 md:pt-12 lg:px-16 xl:px-24">
       <div className="mx-auto max-w-7xl">
-
-     
 
         {/* Main Footer */}
         <div className="grid gap-8 sm:grid-cols-2 md:gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -130,49 +126,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Contact */}
-        <div className="mt-10 border-t border-white/10 pt-7">
-          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
-
-            <div>
-              <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-white/40">
-                Email
-              </p>
-
-              <a
-                href="mailto:ahgrowth@ahgrowth.com "
-                className="text-sm text-white/75 transition-colors hover:text-white"
-              >
-                ahgrowth@ahgrowth.com 
-              </a>
-            </div>
-
-            {/* <div>
-              <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-white/40">
-                Phone
-              </p>
-
-              <a
-                href="tel:+0000000000"
-                className="text-sm text-white/75 transition-colors hover:text-white"
-              >
-                +00 000 000 0000
-              </a>
-            </div> */}
-
-            <div>
-              <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-white/40">
-                Availability
-              </p>
-
-              <p className="text-sm text-white/75">
-                Available for new projects
-              </p>
-            </div>
-
-          </div>
-        </div>
-
         {/* Bottom */}
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-[11px] text-white/40 sm:flex-row sm:items-center sm:justify-between">
           <p>
@@ -200,4 +153,5 @@ export default function Footer() {
     </footer>
   );
 }
+
 

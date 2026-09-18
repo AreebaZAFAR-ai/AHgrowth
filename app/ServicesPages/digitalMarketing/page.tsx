@@ -11,7 +11,7 @@ export default function DigitalMarketingPage() {
         description:
           "We build connected digital marketing systems that bring your brand in front of the right people, turn attention into action, and create measurable growth across every important channel.",
 
-        media: "/assets/DM.jpg",
+        media: "/assets/DM.webp",
         mediaType: "image",
 
         strategyTitle:

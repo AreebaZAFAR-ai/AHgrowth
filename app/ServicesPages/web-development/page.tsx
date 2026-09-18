@@ -11,7 +11,7 @@ export default function WebDevelopmentPage() {
         highlight: "built to convert.",
         description:
           "Fast, conversion-focused websites designed to make every other growth channel perform better.",
-        media: "/assets/webdev2.png",
+        media: "/assets/webdev2.webp",
         mediaType: "image",
 
         strategyTitle:

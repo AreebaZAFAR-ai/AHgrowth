@@ -11,7 +11,7 @@ export default function BrandingPage() {
         highlight: "people remember.",
         description:
           "Identity systems built to make your brand recognizable, relevant and consistent everywhere it appears.",
-        media: "/assets/webdevep.jpg",
+        media: "/assets/webdevep.webp",
         mediaType: "image",
 
         strategyTitle:
