@@ -9,7 +9,7 @@ import Work from "@/components/sections/Work";
 import About from "@/components/sections/About";
 import FeedbackSection from "@/components/FeedbackSection";
 import Testimonials from "@/components/sections/Testimonials";
-import Contact from "@/components/sections/Contact";
+
 import Footer from "@/components/Footer";
 
 export default function Home() {

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -10,7 +9,6 @@ const NAV_LINKS = [
   { label: "Services", id: "services", href: "/service" },
   { label: "Work", id: "work", href: "/work" },
   { label: "About", id: "about", href: "/about" },
-  
 ];
 
 export default function Navigation() {
@@ -92,10 +90,6 @@ export default function Navigation() {
   ) => {
     setIsOpen(false);
 
-    /*
-     * HOME PAGE
-     * Smooth scroll to the section.
-     */
     if (isHomePage && sectionId) {
       const element = document.getElementById(sectionId);
 
@@ -109,10 +103,6 @@ export default function Navigation() {
       }
     }
 
-    /*
-     * OTHER PAGES
-     * Navigate to the correct route.
-     */
     router.push(href);
   };
 
@@ -129,25 +119,6 @@ export default function Navigation() {
     }
 
     router.push("/");
-  };
-
-  const handleBookCall = () => {
-    setIsOpen(false);
-
-    if (isHomePage) {
-      const element = document.getElementById("contact");
-
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-
-        return;
-      }
-    }
-
-    router.push("/contact");
   };
 
   return (
@@ -190,7 +161,6 @@ export default function Navigation() {
             "
           >
             AH GROWTH
-            
           </button>
 
           {/* DESKTOP NAV */}
@@ -229,17 +199,12 @@ export default function Navigation() {
             ))}
           </nav>
 
-     
-         
-
           {/* MOBILE MENU BUTTON */}
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
-            aria-label={
-              isOpen ? "Close menu" : "Open menu"
-            }
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className="
               relative
               z-[110]
@@ -332,8 +297,6 @@ export default function Navigation() {
               {link.label}
             </button>
           ))}
-
-        
         </nav>
       </div>
     </>
