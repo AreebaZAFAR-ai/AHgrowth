@@ -140,14 +140,14 @@ export default function Footer() {
               </p>
 
               <a
-                href="mailto:your@email.com"
+                href="mailto:ahgrowth@ahgrowth.com "
                 className="text-sm text-white/75 transition-colors hover:text-white"
               >
-                your@email.com
+                ahgrowth@ahgrowth.com 
               </a>
             </div>
 
-            <div>
+            {/* <div>
               <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-white/40">
                 Phone
               </p>
@@ -158,7 +158,7 @@ export default function Footer() {
               >
                 +00 000 000 0000
               </a>
-            </div>
+            </div> */}
 
             <div>
               <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-white/40">

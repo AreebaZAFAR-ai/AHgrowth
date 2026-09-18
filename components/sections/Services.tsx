@@ -362,7 +362,7 @@ export default function Services() {
       className="
         relative
         overflow-hidden
-        bg-[rgb(255,255,187)]
+        bg-[#f4f1e8]
         px-8
         py-4
         sm:px-12
@@ -403,8 +403,7 @@ export default function Services() {
           relative
           overflow-hidden
           rounded-[24px]
-          
-          bg-[rgb(255,255,187)]
+          bg-[#f4f1e8]
           sm:rounded-[30px]
           md:rounded-[34px]
           lg:rounded-[40px]

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef, useState } from "react";
@@ -34,8 +33,8 @@ const PROJECTS: Project[] = [
     mediaSrc: "/assets/fitlat.jpg",
     mediaAlt: "FitLat fitness and strength conditioning website",
     gradient:
-      "from-accent-violet/30 via-accent-lime/10 to-background",
-    accentColor: "#452E5A",
+      "from-accent-violet/20 via-accent-lime/5 to-background",
+    accentColor: "#E8DDF0",
     stat: {
       value: "200+",
       label: "Client transformations coached",
@@ -53,8 +52,8 @@ const PROJECTS: Project[] = [
     mediaSrc: "/assets/modish.jpg",
     mediaAlt: "Modisch architecture and design website",
     gradient:
-      "from-accent-violet/25 via-background to-background",
-    accentColor: "#e1e2bb",
+      "from-accent-violet/15 via-background to-background",
+    accentColor: "#E8E8D2",
     stat: {
       value: "47",
       label: "Published Projects",
@@ -72,8 +71,8 @@ const PROJECTS: Project[] = [
     mediaSrc: "/assets/soloar6.png",
     mediaAlt: "SolarLink solar energy website",
     gradient:
-      "from-accent-lime/25 via-background to-background",
-    accentColor: "#17433F",
+      "from-accent-lime/15 via-background to-background",
+    accentColor: "#DCEBE7",
     stat: {
       value: "70-100%",
       label: "Estimated Bill Savings",
@@ -91,8 +90,8 @@ const PROJECTS: Project[] = [
     mediaSrc: "/assets/cake1.png",
     mediaAlt: "Cake Spot cake e-commerce website",
     gradient:
-      "from-accent-violet/20 via-background to-background",
-    accentColor: "#F29191",
+      "from-accent-violet/15 via-background to-background",
+    accentColor: "#F6DDDD",
     stat: {
       value: "6",
       label: "Celebration Categories",
@@ -100,7 +99,7 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const DEFAULT_BG = "#f4f1e8";
+const DEFAULT_BG = "#F7F5EF";
 
 export default function Work() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -223,8 +222,8 @@ export default function Work() {
           h-[400px]
           w-[200px]
           rounded-full
-          bg-[#DFFF4F]/5
-          blur-[120px]
+          bg-[#DFFF4F]/[0.025]
+          blur-[140px]
         "
       />
 
@@ -238,8 +237,8 @@ export default function Work() {
           h-[400px]
           w-[200px]
           rounded-full
-          bg-[#D8D2FF]/5
-          blur-[120px]
+          bg-[#D8D2FF]/[0.025]
+          blur-[140px]
         "
       />
 
@@ -254,8 +253,8 @@ export default function Work() {
           overflow-hidden
           rounded-[24px]
           transition-colors
-          duration-700
-          ease-out
+          duration-1000
+          ease-[cubic-bezier(0.22,1,0.36,1)]
           sm:rounded-[30px]
           md:rounded-[34px]
           lg:rounded-[40px]
@@ -273,8 +272,8 @@ export default function Work() {
             h-[320px]
             w-[320px]
             rounded-full
-            bg-[#DFFF4F]/8
-            blur-[110px]
+            bg-[#DFFF4F]/[0.035]
+            blur-[130px]
           "
         />
 
@@ -288,8 +287,8 @@ export default function Work() {
             h-[300px]
             w-[300px]
             rounded-full
-            bg-[#D8D2FF]/8
-            blur-[110px]
+            bg-[#D8D2FF]/[0.035]
+            blur-[130px]
           "
         />
 

@@ -130,7 +130,7 @@ export default function About() {
           pointer-events-none
           absolute
           inset-0
-          bg-white/75
+          bg-[#f4f1e8]
         "
       />
 
@@ -140,10 +140,7 @@ export default function About() {
           pointer-events-none
           absolute
           inset-0
-          bg-gradient-to-b
-          from-white/60
-          via-white/30
-          to-white/70
+          
         "
       />
 

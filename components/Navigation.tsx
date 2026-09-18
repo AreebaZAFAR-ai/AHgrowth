@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Services", id: "services", href: "/service" },
   { label: "Work", id: "work", href: "/work" },
   { label: "About", id: "about", href: "/about" },
-  { label: "Contact", id: "contact", href: "/contact" },
+  
 ];
 
 export default function Navigation() {
@@ -229,29 +229,8 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* BOOK A CALL */}
-          <button
-            type="button"
-            onClick={handleBookCall}
-            className="
-              hidden
-              rounded-full
-              bg-white
-              px-6
-              py-3
-              font-body
-              text-base
-              font-semibold
-              text-black
-              transition-all
-              duration-300
-              hover:scale-105
-              hover:shadow-lg
-              md:inline-block
-            "
-          >
-            Book a Call
-          </button>
+     
+         
 
           {/* MOBILE MENU BUTTON */}
           <button
@@ -354,28 +333,7 @@ export default function Navigation() {
             </button>
           ))}
 
-          {/* MOBILE BOOK A CALL */}
-          <button
-            type="button"
-            data-menu-link
-            onClick={handleBookCall}
-            className="
-              mt-4
-              rounded-full
-              bg-accent-lime
-              px-8
-              py-3
-              font-body
-              text-base
-              font-semibold
-              text-background
-              transition-transform
-              duration-300
-              hover:scale-105
-            "
-          >
-            Book a Call
-          </button>
+        
         </nav>
       </div>
     </>

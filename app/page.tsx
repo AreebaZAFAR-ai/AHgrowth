@@ -41,9 +41,7 @@ export default function Home() {
 
       <Testimonials />
 
-      <section id="contact">
-        <Contact />
-      </section>
+     
 
       <Footer />
     </>

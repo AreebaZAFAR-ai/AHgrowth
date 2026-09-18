@@ -11,7 +11,7 @@ export default function PerformancePage() {
         highlight: "built around revenue.",
         description:
           "Paid media engineered around customer acquisition cost, payback period and actual business growth.",
-        media: "/assets/marketing.png",
+        media: "/assets/webdevep.jpg",
         mediaType: "image",
 
         strategyTitle:
