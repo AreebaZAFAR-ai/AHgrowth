@@ -83,6 +83,7 @@ export default function WorkProjectCard({
           <MediaPanel
             src={mediaSrc}
             alt={mediaAlt}
+            type="image"
             gradient={gradient}
             className="
               h-full
