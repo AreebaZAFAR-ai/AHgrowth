@@ -11,7 +11,7 @@ export default function GoogleMapsBusinessPage() {
         description:
           "Turn local searches into real customers with a stronger Google Business presence, better Maps visibility, and a local search strategy built to help your business get discovered, trusted, and chosen.",
 
-        media: "/assets/GM.jpg",
+        media: "/assets/GMap.webp",
         mediaType: "image",
 
         strategyTitle:
